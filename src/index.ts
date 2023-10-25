@@ -46,7 +46,7 @@ export function loadReadme(options: ILoadReadmeOptions): RspressPlugin {
     addPages(config, isProd) {
       return [
         {
-          routePath: '/post',
+          routePath: options.route ?? '/readme',
           content: md,
         },
       ];
