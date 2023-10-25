@@ -30,6 +30,29 @@ export default defineConfig({
 });
 ```
 
+## Options
+
+### repo
+
+- **Type**: `string`
+- **Required**: `true`
+
+Specify the Github repository to load, in the format `<username><repo>`.
+
+### branch
+
+- **Type**: `string`
+- **Default**: `master`
+
+Specify the branch.
+
+### route
+
+- **Type**: `string`
+- **Default**: `/readme`
+
+Specify the generated route.
+
 ## License
 
 MIT &copy; [ULIVZ](https://github.com/ulivz)
