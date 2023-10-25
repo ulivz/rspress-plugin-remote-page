@@ -1,7 +1,7 @@
 {
   "name": "rspress-plugin-load-readme",
   "description": "An Rspress plugin designed to seamlessly load your README.md file onto your website.",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "main": "lib/index.js",
   "module": "esm/index.js",
   "typings": "esm/index.d.ts",
