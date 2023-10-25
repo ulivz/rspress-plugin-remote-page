@@ -1,6 +1,6 @@
 {
-  "name": "ts-lib-template",
-  "description": "Default Template",
+  "name": "rspress-plugin-load-readme",
+  "description": "An Rspress plugin designed to seamlessly load your README.md file onto your website.",
   "version": "0.0.0",
   "main": "lib/index.js",
   "module": "esm/index.js",
@@ -29,8 +29,9 @@
     "cov": "jest --coverage",
     "release": "quick-publish"
   },
-  "dependencies": {
-    "tslib": "2.4.0"
+  "peerDependencies": {
+    "rspress": "1",
+    "@rspress/shared": "1"
   },
   "devDependencies": {
     "@types/jest": "28.1.7",

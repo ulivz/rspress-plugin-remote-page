@@ -3,6 +3,7 @@
     "strict": true,
     "strictFunctionTypes": true,
     "incremental": true,
+    "skipLibCheck": true,
     "noUncheckedIndexedAccess": true,
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
