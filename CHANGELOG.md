@@ -1,3 +1,12 @@
+## [0.2.1](https://github.com/ulivz/rspress-plugin-load-readme/compare/v0.2.0...v0.2.1) (2023-10-26)
+
+
+### Bug Fixes
+
+* default branch and file path does not work ([8f1df53](https://github.com/ulivz/rspress-plugin-load-readme/commit/8f1df53d26ff60bf373bc08d86b6158361325071))
+
+
+
 # [0.2.0](https://github.com/ulivz/rspress-plugin-load-readme/compare/v0.1.1...v0.2.0) (2023-10-26)
 
 
