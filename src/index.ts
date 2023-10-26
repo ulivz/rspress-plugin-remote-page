@@ -3,18 +3,21 @@
  * Copyright (c) ULIVZ. All Rights Reserved.
  */
 
+// Import necessary modules
 import https from 'https';
 import { RspressPlugin, AdditionalPage } from '@rspress/shared';
 
+// Define the IRemotePageOptions interface
 export interface IRemotePageOptions {
   /**
-   * Remote urls
+   * Remote URLs list
    */
   pages: Array<{
     /**
-     * Remote path, e.g. ulivz/rspress-plugin-load-remote-markdown
+     * Remote path, e.g., ulivz/rspress-plugin-load-remote-markdown
      */
     remotePath: string;
+
     /**
      * Page route path
      */
@@ -22,6 +25,7 @@ export interface IRemotePageOptions {
   }>
 }
 
+// Define AdditionalRemotePage type
 type AdditionalRemotePage = AdditionalPage & {
   remoteUrl: string;
 }
@@ -29,14 +33,15 @@ type AdditionalRemotePage = AdditionalPage & {
 /**
  * A simple fetch method without dependencies
  *
- * @param url
- * @returns
+ * @param url - The URL to download from
+ * @returns - Promise that resolves with the downloaded data or rejects with an error
  */
 function download(url: string): Promise<string | never> {
   return new Promise((resolve, reject) => {
     https.get(url, res => {
       const { statusCode } = res;
 
+      // Check for non-200 status codes
       if (statusCode !== 200) {
         const error = new Error(`Request ${url} failed, statusCode: ${statusCode}`);
         console.error(error.message);
@@ -47,28 +52,39 @@ function download(url: string): Promise<string | never> {
       res.setEncoding('utf8');
       let rawData = '';
 
+      // Concatenate chunks of data
       res.on('data', chunk => {
         rawData += chunk;
       });
 
+      // Resolve with the final data
       res.on('end', () => {
         resolve(rawData);
       });
 
+      // Reject on any error
       res.on('error', reject);
     });
   });
 }
 
+// Utility functions
 const isExternal = (input: string) => /^https?:/.test(input);
 const isMarkdown = (input: string) => /\.md/.test(input);
 
+// Define GitHubInfo type
 type GitHubInfo = {
   repo: string | void;
   branch?: string;
   filePath?: string;
 };
 
+/**
+ * Extract GitHub URL information
+ *
+ * @param input - The input URL or short name
+ * @returns - An object containing repo, branch, and file path or null if no match found
+ */
 function extractGitHubUrl(input: string): GitHubInfo | null {
   const fullUrlPattern = /^(?:https?:\/\/)?(?:www\.)?github\.com\/([a-zA-Z0-9_-]+\/[a-zA-Z0-9_-]+)(?:\/blob\/([a-zA-Z0-9_-]+)\/(.*))?/;
   const shortUrlPattern = /^([a-zA-Z0-9_-]+\/[a-zA-Z0-9_-]+)$/;
@@ -92,8 +108,10 @@ function extractGitHubUrl(input: string): GitHubInfo | null {
   return null;
 }
 
+// Define logging prefix
 const PREFIX = '[REMOTE_PAGE]';
 
+// remotePage main function
 export function remotePage(options: IRemotePageOptions): RspressPlugin {
   let additionalPages: Array<AdditionalRemotePage>;
 
@@ -135,6 +153,8 @@ export function remotePage(options: IRemotePageOptions): RspressPlugin {
 
       additionalPages = await Promise.all(tasks);
     },
+
+    // Add additional pages to RspressPlugin
     addPages(config, isProd) {
       additionalPages.forEach(page => {
         console.error(`${PREFIX} route: "${page.routePath}" (remote: ${page.remoteUrl})`);
