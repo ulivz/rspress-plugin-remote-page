@@ -119,7 +119,22 @@ export function remotePage(options: IRemotePageOptions): RspressPlugin {
     name: 'load-remote-markdown',
     async beforeBuild(config, isProd) {
       const tasks = options.pages.reduce<Array<Promise<AdditionalRemotePage>>>((pages, page) => {
-        if (isExternal(page.remotePath)) {
+        const info = extractGitHubUrl(page.remotePath);
+        if (info && info.repo) {
+          // eslint-disable-next-line max-len
+          const url = `https://raw.githubusercontent.com/${info.repo}/${info.branch ?? 'master'}/${info.filePath ?? 'README.md'}`;
+          if (isMarkdown(url)) {
+            pages.push((async function (): Promise<AdditionalRemotePage> {
+              return {
+                routePath: page.routePath,
+                content: await download(url),
+                remoteUrl: url,
+              };
+            })());
+          } else {
+            console.error(`${PREFIX} Only *.md is supported as input for remote page, got: ${url}`);
+          }
+        } else if (isExternal(page.remotePath)) {
           if (isMarkdown(page.remotePath)) {
             pages.push((async function (): Promise<AdditionalRemotePage> {
               return {
@@ -130,23 +145,6 @@ export function remotePage(options: IRemotePageOptions): RspressPlugin {
             })());
           } else {
             console.error(`${PREFIX} Only *.md is supported as input for remote page, got: ${page.remotePath}`);
-          }
-        } else {
-          const info = extractGitHubUrl(page.remotePath);
-          if (info && info.repo) {
-            // eslint-disable-next-line max-len
-            const url = `https://raw.githubusercontent.com/${info.repo}/${info.branch ?? 'master'}/${info.filePath ?? 'README.md'}`;
-            if (isMarkdown(url)) {
-              pages.push((async function (): Promise<AdditionalRemotePage> {
-                return {
-                  routePath: page.routePath,
-                  content: await download(url),
-                  remoteUrl: url,
-                };
-              })());
-            } else {
-              console.error(`${PREFIX} Only *.md is supported as input for remote page, got: ${url}`);
-            }
           }
         }
         return pages;
