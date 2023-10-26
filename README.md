@@ -10,10 +10,26 @@
     <a href="https://circleci.com/gh/saojs/rspress-plugin-remote-page"><img src="https://img.shields.io/circleci/project/saojs/rspress-plugin-remote-page/master.svg?style=flat" alt="Build Status"></a> 
 </p>
 
+## Table of Contents
+
+- [Table of Contents](#table-of-contents)
+- [Features](#features)
+- [Install](#install)
+- [Usage](#usage)
+  - [Load Github `README.md`](#load-github-readmemd)
+  - [Load Github Markdown](#load-github-markdown)
+  - [Load any Remote Markdown](#load-any-remote-markdown)
+- [Page Options](#page-options)
+  - [remotePath](#remotepath)
+  - [routePath](#routepath)
+- [TODOs](#todos)
+- [License](#license)
+
+
 ## Features
 
-- Load any remote Markdowns.
-- Load Github Markdowns by detecting.
+- Effortlessly load any remote Markdown files.
+- Automatically load GitHub Markdown files through detection.
 
 ## Install
 
@@ -24,25 +40,6 @@ npm install rspress-plugin-remote-page -D
 ## Usage
 
 ### Load Github `README.md`
-
-```ts
-// rspress.config.ts
-import { remotePage } from 'rspress-plugin-remote-page';
-import { defineConfig } from 'rspress/config';
-
-export default defineConfig({
-  plugins: [remotePage({
-    pages: [
-      {
-        remotePath: 'ulivz/rspress-plugin-remote-page',
-        routePath: '/readme',
-      }
-    ]
-  })],
-});
-```
-
-### Load Github Markdown
 
 ```ts
 // rspress.config.ts
