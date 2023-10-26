@@ -1,3 +1,12 @@
+# [0.2.0](https://github.com/ulivz/rspress-plugin-load-readme/compare/v0.1.1...v0.2.0) (2023-10-26)
+
+
+### Features
+
+* renamed to `rspress-plugin-remote-page` and support more features ([fcbb9cc](https://github.com/ulivz/rspress-plugin-load-readme/commit/fcbb9ccf07cb1fda705cecd21c20235b7e62e0f7))
+
+
+
 ## [0.1.1](https://github.com/ulivz/rspress-plugin-load-readme/compare/v0.1.0...v0.1.1) (2023-10-25)
 
 
