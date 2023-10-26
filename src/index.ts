@@ -93,8 +93,8 @@ function extractGitHubUrl(input: string): GitHubInfo | null {
   if (fullMatch) {
     return {
       repo: fullMatch[1],
-      branch: fullMatch[2] || 'master',
-      filePath: fullMatch[3] || 'README.md',
+      branch: fullMatch[2],
+      filePath: fullMatch[3],
     };
   }
 
@@ -134,7 +134,8 @@ export function remotePage(options: IRemotePageOptions): RspressPlugin {
         } else {
           const info = extractGitHubUrl(page.remotePath);
           if (info && info.repo) {
-            const url = `https://raw.githubusercontent.com/${info.repo}/${info.branch}/${info.filePath}`;
+            // eslint-disable-next-line max-len
+            const url = `https://raw.githubusercontent.com/${info.repo}/${info.branch ?? 'master'}/${info.filePath ?? 'README.md'}`;
             if (isMarkdown(url)) {
               pages.push((async function (): Promise<AdditionalRemotePage> {
                 return {
