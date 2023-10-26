@@ -1,6 +1,6 @@
 {
-  "name": "rspress-plugin-load-readme",
-  "description": "An Rspress plugin designed to seamlessly load your README.md file onto your website.",
+  "name": "rspress-plugin-remote-page",
+  "description": "An Rspress plugin to seamlessly load remote markdown file (e.g. README.md) onto your website.",
   "version": "0.1.1",
   "main": "lib/index.js",
   "module": "esm/index.js",
