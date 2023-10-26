@@ -1,3 +1,12 @@
+## [0.2.2](https://github.com/ulivz/rspress-plugin-load-readme/compare/v0.2.1...v0.2.2) (2023-10-26)
+
+
+### Bug Fixes
+
+* github full url does not work ([f8a55fc](https://github.com/ulivz/rspress-plugin-load-readme/commit/f8a55fc1e57427f70e582e4893ab99fdeb8e5889))
+
+
+
 ## [0.2.1](https://github.com/ulivz/rspress-plugin-load-readme/compare/v0.2.0...v0.2.1) (2023-10-26)
 
 
