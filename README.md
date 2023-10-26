@@ -117,6 +117,8 @@ Specify the generated route.
 ## TODOs
 
 - Support remote `*.mdx`.
+- Enhance logging output.
+- Enhance error handling when fetching pages.
 
 ## License
 
